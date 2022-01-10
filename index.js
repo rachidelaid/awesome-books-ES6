@@ -1,5 +1,6 @@
 import renderBooks from './modules/renderer.js';
 import Books from './modules/class.js';
+import { DateTime } from './node_modules/luxon/build/es6/luxon.js';
 
 const formElm = document.querySelector('form');
 
@@ -17,10 +18,13 @@ formElm.addEventListener('submit', (e) => {
   formElm.author.value = '';
 
   booksList.add({ title, author });
-  renderBooks();
+  renderBooks(booksList);
 
   return false;
 });
+
+const timeParagraph = DateTime.now();
+document.querySelector('.date').textContent = timeParagraph;
 
 const links = document.querySelectorAll('.links a');
 links.forEach((link) => {
